@@ -8,11 +8,10 @@ const Users = () => {
 	const renderPhrase = number => {
 		const lastOne = Number(number.toString().slice(-1))
 		console.log(lastOne)
-		if (number > 4 && number < 15) return 'Человек тусанёт'
+		if ((number > 4 && number < 15) || lastOne === 1) return 'Человек тусанёт'
 		if ([2, 3, 4].indexOf(lastOne) >= 0) return 'Человека тусанёт'
-		if (lastOne === 1) return 'Человек тусанёт'
 
-		return 'Человек тусанёт'
+		// return 'Человек тусанёт'
 	}
 	return (
 		<>
@@ -22,7 +21,7 @@ const Users = () => {
 				>
 					{users.length > 0
 						? `${users.length} ${renderPhrase(users.length)} с тобой сегодня`
-						: 'Не кто с тобой тусанет '}
+						: 'Не кто с тобой не тусанет '}
 				</span>
 			</h2>
 			{users.length > 0 && (
