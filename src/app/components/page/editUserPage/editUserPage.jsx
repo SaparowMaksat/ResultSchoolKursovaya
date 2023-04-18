@@ -7,6 +7,7 @@ import { validator } from "../../../utils/validator.js";
 import API from "../../../api";
 import { useHistory, useParams } from "react-router-dom";
 import professionsApi from "../../../api/fake.api/professions.api";
+import BackHistoryButton from "../../common/backButton";
 
 function EditUserPage() {
     const { userId } = useParams();
@@ -108,7 +109,8 @@ function EditUserPage() {
 
     const isValid = Object.keys(errors).length === 0;
     return (
-        <div className="container mt-4">
+        <div className="container mt-5">
+            <BackHistoryButton />
             <div className="row">
                 <div className="col-md-6 offset-md-3 shadow p-4">
                     {!isLoading && Object.keys(professionsApi).length > 0 ? (
