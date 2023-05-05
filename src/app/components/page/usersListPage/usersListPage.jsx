@@ -7,6 +7,7 @@ import GroupList from "../../common/groupList";
 import UsersTable from "../../ui/usersTable";
 import _ from "lodash";
 import Pagination from "../../common/pagination.jsx";
+import { useUser } from "../../../hooks/useUsers.jsx";
 
 const UsersListPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -15,22 +16,21 @@ const UsersListPage = () => {
     const [selectedProf, setSelectedProf] = useState();
     const [sortBy, setSortBy] = useState({ path: "name", order: "asc" });
 
-    const [users, setUsers] = useState();
-    useEffect(() => {
-        API.users.fetchAll().then((data) => setUsers(data));
-    }, []);
+    const { users } = useUser();
+
     const handleDelete = (userId) => {
-        setUsers(users.filter((user) => user._id !== userId));
+        // setUsers(users.filter((user) => user._id !== userId));
+        console.log(userId);
     };
     const handleToggleBookMark = (id) => {
-        setUsers(
-            users.map((user) => {
-                if (user._id === id) {
-                    return { ...user, bookmark: !user.bookmark };
-                }
-                return user;
-            })
-        );
+        const newArray = users.map((user) => {
+            if (user._id === id) {
+                return { ...user, bookmark: !user.bookmark };
+            }
+            return user;
+        });
+        // setUsers(newArray);
+        console.log(newArray);
     };
 
     const pageSize = 6;
